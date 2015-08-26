@@ -1,8 +1,10 @@
 var express = require('express'),
     path = require('path'),
+    sqls = require('./sqlinit'),
     users = require('./users');
 var app = express();
 
+sqls();
 //    bodyParser = require('body-parser'),
 
 app.set('port', process.env.PORT || 5000);
