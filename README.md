@@ -1,6 +1,6 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-
+### after deploy ...
 #### table create & insert data(you need to install 'heroku toolbelt')
 
  $ heroku pg:psql --app {deployed app name , like 'whispering-badlands-2199'}} DATABASE
