@@ -13,5 +13,5 @@
    "email" varchar(128) DEFAULT NULL
  );
 
- INSERT INTO users (name) VALUES
+ INSERT INTO users (name, email) VALUES
     ('hogetahogeo', 'hoge@hoge.com');
