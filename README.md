@@ -65,6 +65,16 @@
       {input new password}
     $ sudo service postgresql initdb
     $ sudo service postgresql start
+    
+    ** postgres config file
+    $ su - postgres
+    $ sudo vi /var/lib/pgsql/data/pg_hba.conf
+    *** change IPv4 METHOD : ident -> trust
+    $ pg_ctl reload -D /var/lib/pgsql/data
+    $ pg_ctl status
+    (check 'PID' !)
+    $ pg_ctl kill TERM {PID}
+    $ pg_ctl start
 
 ### as a reference
 https://github.com/SalesforceDevelopersJapan/nibs-jp  
