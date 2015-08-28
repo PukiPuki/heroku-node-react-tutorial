@@ -1,14 +1,18 @@
 var React = require('react');
 var request = require('superagent');
+var styles = {
+      border : "1px solid",
+      borderColor : "#000"
+    };
 
 var User = React.createClass({
   render: function() {
     return (
-      <tr className="user">
-        <td className="userName">
+      <tr className="user" style={styles}>
+        <td className="userName" style={styles}>
           {this.props.name}
         </td>
-        <td className="userEmail">
+        <td className="userEmail" style={styles}>
           {this.props.email}
         </td>
       </tr>
@@ -74,19 +78,14 @@ var UserList = React.createClass({
         <User name={user.name} email={user.email} key={index} />
       );
     });
-    var styles = {
-      border : "1",
-      borderColor : "#000",
-      padding : "5px"
-    };
     return (
       <table className="userList" style={styles}>
         <tbody>
-          <tr className="user">
-            <th className="userName">
+          <tr className="user" style={styles}>
+            <th className="userName" style={styles}>
               name
             </th>
-            <th className="userEmail">
+            <th className="userEmail" style={styles}>
               email
             </th>
           </tr>
