@@ -1,3 +1,5 @@
+# Tutorial React.js/Node.js/PostgreSQL on Heroku
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ### after deploy ...
@@ -15,3 +17,63 @@
 
  INSERT INTO users (name, email) VALUES
     ('hogetahogeo', 'hoge@hoge.com');
+
+### set up for testing from localPC (use vagrant)
+#### vagrant set up
+[code]
+ $ vagrant box add tutorial https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
+ $ mkdir tutorial
+ $ cd tutorial
+ $ vagrant init tutorial
+ ** edit Vagrantfile (add setting "config.vm.synced_folder") about host from localpc, sync source folder
+  -> config.vm.network "private_network", ip: "192.168.33.10"
+  -> config.vm.synced_folder "src", "/home/vagrant/src", create: true, owner: "vagrant", group: "vagrant"
+ $ mkdir src
+ $ vagrant up
+ $ vagrant ssh
+[/code]
+
+#### install wget,ruby,postgreSQL,herokutoolbelt into virtual environment 
+[code]
+ $ vagrant ssh
+ $ sudo yum install wget
+ $ sudo yum -y install gcc zlib-devel openssl-devel sqlite sqlite-devel mysql-devel readline-devel libffi-devel
+ $ cd /usr/local/src
+ $ sudo wget https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.3.tar.gz
+ $ sudo tar zxvf ruby-2.2.3.tar.gz
+ $ cd ruby-2.2.3
+ $ sudo ./configure
+ $ sudo make
+ $ sudo make install
+ $ sudo yum install postgresql-tcl postgresql-server postgresql-contrib postgresql
+ $ sudo wget -qO- https://toolbelt.heroku.com/install.sh | sh
+ ** export PATH="/usr/local/heroku/bin:$PATH"
+ $ cd ~
+ $ vi .bash_properties
+ add below
+  PATH="/usr/local/heroku/bin:$PATH"
+  export PATH
+
+ $ exit
+
+ $ vagrant ssh
+ $ heroku keys:add
+
+ $ sudo passwd postgres
+  {input new password}
+ $ sudo service postgresql initdb
+ $ sudo service postgresql start
+[/code]
+
+### as a reference
+https://github.com/SalesforceDevelopersJapan/nibs-jp
+http://expressjs.com/guide/routing.html
+http://qiita.com/morou/items/06cbe49f64d56d31b793
+http://www.yoheim.net/blog.php?q=20150101
+http://qiita.com/Awa_Dama/items/3f73ec4f5bf94bac2094
+http://www.bucyou.net/blog/1219
+https://github.com/reactjs/react-tutorial
+http://mae.chab.in/archives/2529
+http://code.runnable.com/VOIYIALkqgAnHDmj/node-js-socket-io-and-react-js
+http://qiita.com/masato/items/35b0900e3a7282b33bf8
+http://qiita.com/hashrock/items/3113690bb3de5bba639b
