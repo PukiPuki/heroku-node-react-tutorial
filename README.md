@@ -3,7 +3,7 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ### after deploy ...
-#### table create & insert data(you need to install 'heroku toolbelt')
+#### table create & insert data(you need to install 'heroku toolbelt', 'postgreSQL' like below 'install wget ~')
 
     $ heroku pg:psql --app {deployed app name , like 'whispering-badlands-2199'}} DATABASE
     
@@ -35,6 +35,7 @@
 #### install wget,ruby,postgreSQL,herokutoolbelt into virtual environment 
 
     $ vagrant ssh
+    ** install ruby
     $ sudo yum install wget
     $ sudo yum -y install gcc zlib-devel openssl-devel sqlite sqlite-devel mysql-devel readline-devel libffi-devel
     $ cd /usr/local/src
@@ -44,7 +45,9 @@
     $ sudo ./configure
     $ sudo make
     $ sudo make install
+    ** install postgreSQL
     $ sudo yum install postgresql-tcl postgresql-server postgresql-contrib postgresql
+    ** install herokutoolbelt
     $ sudo wget -qO- https://toolbelt.heroku.com/install.sh | sh
     ** export PATH="/usr/local/heroku/bin:$PATH"
     $ cd ~
@@ -54,7 +57,7 @@
      export PATH
     
     $ exit
-    
+    ** set up env
     $ vagrant ssh
     $ heroku keys:add
     
