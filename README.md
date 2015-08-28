@@ -67,9 +67,9 @@
     $ sudo service postgresql start
     
     ** postgres config file
-    $ su - postgres
     $ sudo vi /var/lib/pgsql/data/pg_hba.conf
     *** change IPv4 METHOD : ident -> trust
+    $ su - postgres
     $ pg_ctl reload -D /var/lib/pgsql/data
     $ pg_ctl status
     (check 'PID' !)
