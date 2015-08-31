@@ -51,7 +51,7 @@
     $ sudo wget -qO- https://toolbelt.heroku.com/install.sh | sh
     ** export PATH="/usr/local/heroku/bin:$PATH"
     $ cd ~
-    $ vi .bash_properties
+    $ vi .bash_profile
     ** add below
      PATH="/usr/local/heroku/bin:$PATH"
      export PATH
