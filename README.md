@@ -32,7 +32,7 @@
     $ vagrant up
     $ vagrant ssh
 
-#### install wget,ruby,postgreSQL,herokutoolbelt into virtual environment 
+#### install wget,ruby,postgreSQL,herokutoolbelt,npm into virtual environment 
 
     $ vagrant ssh
     ** install ruby
@@ -46,7 +46,11 @@
     $ sudo make
     $ sudo make install
     ** install postgreSQL
-    $ sudo yum install postgresql-tcl postgresql-server postgresql-contrib postgresql
+    $ sudo vi /etc/yum.repos.d/CentOS-Base.repo
+      ** add below at [base] and [updates]
+      -> exclude=postgresql*
+    $ sudo yum localinstall http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-1.noarch.rpm
+    $ sudo yum install postgresql94-server postgresql94-contrib
     ** install herokutoolbelt
     $ sudo wget -qO- https://toolbelt.heroku.com/install.sh | sh
     ** export PATH="/usr/local/heroku/bin:$PATH"
@@ -63,18 +67,26 @@
     
     $ sudo passwd postgres
       {input new password}
-    $ sudo service postgresql initdb
-    $ sudo service postgresql start
+    $ sudo service postgresql-9.4 initdb
+    $ sudo service postgresql-9.4 start
+    $ sudo chkconfig postgresql-9.4 on
     
     ** postgres config file
-    $ sudo vi /var/lib/pgsql/data/pg_hba.conf
+    $ sudo vi /var/lib/pgsql/9.4/data/pg_hba.conf
+    *** change Local : local  all  all  peer -> local  all  all  trust
     *** change IPv4 METHOD : ident -> trust
     $ su - postgres
-    $ pg_ctl reload -D /var/lib/pgsql/data
+    $ pg_ctl reload -D /var/lib/pgsql/9.4/data
     $ pg_ctl status
     (check 'PID' !)
     $ pg_ctl kill TERM {PID}
     $ pg_ctl start
+
+    ** install npm, gulp, necessary librally
+    $ cd /~
+    $ sudo yum install npm
+    $ sudo npm install -g gulp
+    $ npm install
 
 ### as a reference
 https://github.com/SalesforceDevelopersJapan/nibs-jp  
